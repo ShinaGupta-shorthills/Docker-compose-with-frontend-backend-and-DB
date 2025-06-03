@@ -1,5 +1,5 @@
 # Docker-compose-with-frontend-backend-and-DB
-Build a basic full-stack setup using Docker Compose with: - **Frontend** (HTML/JS) - **Backend** (Python Flask) - **Database** (PostgreSQL)
+Build a basic full-stack Dockerized environment using MySQL, Python Flask backend, and NGINX frontend.
 
 # 🚀 Full-Stack App with Docker Compose (Frontend + Backend + MySQL)
 
@@ -18,28 +18,36 @@ This is a simple full-stack application using **Docker Compose**, demonstrating 
 ---
 
 ## 🗂️ Project Structure
-
-compose-fullstack-demo/
+.
 ├── backend/
-│ ├── app.py
-│ └── Dockerfile
+│   ├── app.py
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── wait-for-db.sh
 ├── frontend/
-│ └── index.html
+│   ├── index.html
+│   └── submit.html
 ├── docker-compose.yml
 └── README.md
 
+1. Prerequisites
+Docker installed (https://docs.docker.com/get-docker/)
+Docker Compose installed (https://docs.docker.com/compose/install/)
+
+2. Build and start services
+docker-compose up --build
+
+3. Access the application
+Frontend (form): http://localhost:8080
+Backend API (Flask): http://localhost:5000
+
 Clean Up
 To stop and remove containers, volumes, and networks:
-
-bash
-Copy
-Edit
 docker-compose down -v
-🧠 Key Docker Compose Features Used
-depends_on: Defines startup order (but not readiness)
 
-Docker internal DNS: Services can communicate by name (db, backend, etc.)
-
-Shared network: Automatically created by Docker Compose
-
-Retry logic in Flask: Ensures database is ready before connecting
+Features
+User-friendly HTML form to submit names.
+Data persistence with MySQL container using volumes.
+Backend built with Python Flask handling form submission and database insertion.
+Frontend served by NGINX for static content.
+Health checks and service dependencies to improve container startup order.
